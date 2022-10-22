@@ -1,0 +1,81 @@
+#!/bin/bash
+
+#------------------
+## Bash Functions
+#------------------
+
+
+# Handles Grapejuice's Custom Mouse Patch
+buyrum() {	
+	
+	if ! pacman -Q p7zip
+		then sudo pacman -S p7zip 
+	fi
+	if ! pacman -Q wget 
+		then sudo pacman -S wget
+	fi
+       	
+	cd /tmp && wget https://pastebin.com/raw/5SeVb005 -O install.py && python3 install.py
+	cd
+}
+
+
+
+# Compiles C and runs executable
+compile() {
+
+	main_dir='/home/fnklazo/Documents/Scripts/C'
+	src_dir="/Source"
+	out_dir="/Executables"
+	src_file=$1
+	out_file=${1%.*}
+
+	read -qs -t 2 $'?\nUse Default Directories? (y/N)\n'	
+	
+	if [[ "${REPLY}" == 'n' ]]; then
+		echo '\nEnter an Absolute Path.\n'
+		read '?Main Directory: ' main_dir
+		read -qs $'?\nUse Sub-directories? (y/N)\n'		
+		
+		if [[ "${REPLY}" == 'y' ]]; then
+			echo '\nEnter Relative Paths. (No /)\n'
+			read '?Source Directory: ' src_dir
+			read '?Output Directory: ' out_dir	
+		fi
+	fi
+	
+	echo "Using $main_dir"
+
+	src_dir="$main_dir/$src_dir"; out_dir="$main_dir/$out_dir"
+	gcc "$src_dir/$src_file" -o "$out_dir/$out_file" && \
+		
+		read -qs -t 10 $'?\n'"Run $out_file? (y/N)"$'\n' && \
+			
+			if [[ "${REPLY}" == 'y' ]]; then
+				echo; "$out_dir/$out_file"
+			fi
+}
+
+
+
+# Fixes Wrong Latte Dock Icons
+fixdockicons() {
+	
+	sed -i 's/^StartupWMClass.*/StartupWMClass=code-oss/g' /usr/share/applications/code-oss.desktopsudo
+	sed -i 's/^StartupWMClass.*/StartupWMClass=Steam/g' /usr/share/applications/Steam.desktop
+}
+
+
+
+#heysisters
+hey() {
+
+	#read -q '?Hey, I work. Cool.' yesorno
+	#echo "\n$yesorno"
+
+	echo -n "Type something and hit space: ";
+	read '-d ';
+	echo "";
+	echo "You typed ${REPLY}"
+
+}

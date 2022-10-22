@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#----------------------
+## Custom Bash Aliases
+#----------------------
+
+alias edit-aliases='vim $shell_dir/aliases'
+alias edit-cmds='vim $shell_dir/commands'
+
+
+## Pacman/Yay Shortcuts
+
+alias install='yay -Syu && yay -S'
+alias query='yay -Q'
+alias search='yay -Ss'
+alias update='yay -Syyu'
+alias orphans='yay -Qdtq'
