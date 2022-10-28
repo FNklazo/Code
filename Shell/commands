@@ -24,9 +24,9 @@ buyrum() {
 # Compiles C and runs executable
 compile() {
 
-	main_dir='/home/fnklazo/Documents/Scripts/C'
-	src_dir="/Source"
-	out_dir="/Executables"
+	main_dir='/home/fnklazo/Documents/Code/C'
+	src_dir="Source"
+	out_dir="Executables"
 	src_file=$1
 	out_file=${1%.*}
 
