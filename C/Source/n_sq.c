@@ -9,7 +9,7 @@ int main()
 
     n_sq = n * n;
 
-    printf("Your number: %.0f", n);
-    printf("Your number squared: %.0f\n", n_sq);
+    printf("\nYour number: %.0f", n);
+    printf("\nYour number squared: %.0f\n", n_sq);
 
 }
