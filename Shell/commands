@@ -8,23 +8,22 @@
 # Handles Grapejuice's Custom Mouse Patch
 buyrum() {
 	
-	dependencies=p7zip,wget,grapejuice-git,wine,wine-mono,wine-gecko
-
-	for pkg in $dependencies; do
-		if ! yay -Q $pkg; then
-			yay -S $pkg
+	dependencies=(p7zip wget grapejuice-git wine wine-mono wine-gecko)
+	for pkg in "${dependencies[@]}"; do
+		if ! yay -Q "$pkg"; then
+			yay -S "$pkg"
 		fi
 	done
-  	
+	
 	cd /tmp || exit
-
-	if find /tmp -name 'debuntu-wine-tkg-staging-fsync-git*' && [[ -e install.py ]]; then
-		read -rqs $'?Wine patch found, might be old\nUse it? (y\N)'
-		if [[ "${REPLY}" == 'n' ]]; then
-			wget https://pastebin.com/raw/5SeVb005 -O install.py
+	if sudo find /tmp -name 'debuntu-wine-tkg-staging-fsync-git*' & [ -f install.py ]; then
+		read -rqs $'?\nWine patch found, might be old.\nUse it? (y/N)'
+		if [[ "${REPLY}" == 'y' ]]; then
+			python3 install.py
 		fi
 	fi
-	python3 install.py
+	
+	wget https://pastebin.com/raw/5SeVb005 -O install.py && python3 install.py
 	cd || exit
 }
 
@@ -55,12 +54,12 @@ compile() {
 	echo "Using $main_dir"
 
 	src_dir="$main_dir/$src_dir"; out_dir="$main_dir/$out_dir"
-	gcc "$src_dir/$src_file" -o "$out_dir/$out_file" && \
+	gcc "$src_dir/$src_file" -o "$out_dir/$out_file"
 		
-		read -rqst 5 $'?\n'"Run $out_file? (y/N)"$'\n' && \
-			if [[ "${REPLY}" == 'y' ]]; then
-				"$out_dir/$out_file"
-			fi
+	read -rqst 5 $'?\n'"Run $out_file? (y/N)"$'\n' && \
+		if [[ "${REPLY}" == 'y' ]]; then
+			"$out_dir/$out_file"
+		fi
 }
 
 
@@ -68,7 +67,7 @@ compile() {
 # Fixes Wrong Latte Dock Icons
 fixdockicons() {
 	
-	sed -i 's/^StartupWMClass.*/StartupWMClass=code-oss/g' /usr/share/applications/code-oss.desktopsudo
+	sed -i 's/^StartupWMClass.*/StartupWMClass=code-oss/g' /usr/share/applications/code-oss.desktop
 	sed -i 's/^StartupWMClass.*/StartupWMClass=Steam/g' /usr/share/applications/Steam.desktop
 }
 
@@ -81,7 +80,7 @@ hey() {
 	#echo "\n$yesorno"
 
 	echo -n "Type something and hit space: ";
-	read '-d ';
+	read -r '-d ';
 	echo "";
 	echo "You typed ${REPLY}"
 
