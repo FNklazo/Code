@@ -12,7 +12,7 @@ buyrum() {
 
 	for pkg in $dependencies; do
 		if ! yay -Q $pkg; then
-			yay -S pkg
+			yay -S $pkg
 		fi
 	done
   	
