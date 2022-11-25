@@ -18,12 +18,12 @@ buyrum() {
 	cd /tmp || exit
 	if sudo find /tmp -name 'debuntu-wine-tkg-staging-fsync-git*' & [ -f install.py ]; then
 		read -rqs $'?\nWine patch found, might be old.\nUse it? (y/N)'
-		if [[ "${REPLY}" == 'y' ]]; then
-			python3 install.py
+		if [[ "${REPLY}" == 'n' ]]; then
+			wget https://pastebin.com/raw/5SeVb005 -O install.py
 		fi
 	fi
 	
-	wget https://pastebin.com/raw/5SeVb005 -O install.py && python3 install.py
+	python3 install.py
 	cd || exit
 }
 
@@ -76,12 +76,8 @@ fixdockicons() {
 #heysisters
 hey() {
 
-	#read -q '?Hey, I work. Cool.' yesorno
-	#echo "\n$yesorno"
+	#tester func
 
-	echo -n "Type something and hit space: ";
-	read -r '-d ';
-	echo "";
-	echo "You typed ${REPLY}"
+	echo nothing to check.q
 
 }
