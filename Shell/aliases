@@ -4,12 +4,10 @@
 ## Custom Bash Aliases
 #----------------------
 
-alias edit-aliases='vim $shell_dir/aliases'
-alias edit-cmds='vim $shell_dir/commands'
+alias edit-aliases='vim $bash_dir/aliases'
+alias edit-cmds='vim $bash_dir/commands'
 
-
-## Pacman/Yay Shortcuts
-
+# Pacman/yay
 alias install='yay -Syu && yay -S'
 alias query='yay -Q'
 alias search='yay -Ss'

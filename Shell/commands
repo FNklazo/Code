@@ -59,6 +59,7 @@ compile() {
 	read -rqst 5 $'?\n'"Run $out_file? (y/N)"$'\n' && \
 		if [[ "${REPLY}" == 'y' ]]; then
 			"$out_dir/$out_file"
+			clear
 		fi
 }
 
