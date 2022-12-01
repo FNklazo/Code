@@ -18,12 +18,11 @@ buyrum() {
 	cd /tmp || exit
 	if sudo find /tmp -name 'debuntu-wine-tkg-staging-fsync-git*' & [ -f install.py ]; then
 		read -rqs $'?\nWine patch found, might be old.\nUse it? (y/N)'
-		if [[ "${REPLY}" == 'n' ]]; then
-			wget https://pastebin.com/raw/5SeVb005 -O install.py
+		if [[ "${REPLY}" == 'y' ]]; then
+			python3 install.py
 		fi
 	fi
-	
-	python3 install.py
+	wget https://pastebin.com/raw/5SeVb005 -O install.py && python3 install.py
 	cd || exit
 }
 

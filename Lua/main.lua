@@ -1,13 +1,12 @@
 local main_utils = require "main_utils"
-local user, ai, bool
-local RPS = {'rock', 'paper', 'scissors'}
+local user, bool
+
 
 local function main()
     while true do
-        user, bool = main_utils.GetRPS(user, RPS)
+        user, bool = main_utils.GetRPS(user)
         if bool then
-            ai = RPS[math.random(#RPS)]
-            
+            print('\n', main_utils.Game(user, ai), '\n')
         end
     end
 end

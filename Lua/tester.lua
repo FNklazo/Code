@@ -15,7 +15,7 @@ for i=1, #arr do
         user = arr[i]
         print(user)
         break
-    end
+ hello   end
 end
 ]]
 
@@ -24,3 +24,9 @@ for w in string.gmatch(s, "%a+") do
   print(w)
 end
 
+a = 'string'
+b = 'string'
+
+if a == b then
+    print('true')
+end
